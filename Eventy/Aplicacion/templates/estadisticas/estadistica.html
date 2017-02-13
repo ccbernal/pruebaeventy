@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+	<head>
+		<meta charset="utf-8">
+	    <!-- code to include the highcharts and jQuery libraries goes here -->
+	    {% load static %}
+	    <script src="{% static 'js/jquery/jquery-1.8.3.js' %}"></script>
+	    <script src="{% static 'js/highcharts/js/highcharts.js' %}"></script>
+	    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"></link>
+		<title>Ver Resultados</title>
+	</head>
+	<body>
+		<div class="container">
+			<div id="header">
+				<div id="branding">
+			    	<h1 id="site-name"><a href="/admin/">Eventy</a></h1>
+				</div>
+			
+				<div id="user-tools">
+					Bienvenido/a,
+				    <strong>{{usuario.username}}</strong>.
+				    <a href="/">Ver el sitio</a> /
+				    <a href="/admin/password_change/">Cambiar contrasena</a> /
+				    <a href="/admin/logout/">Terminar sesion</a>
+				</div>
+			</div>
+
+			<div class="breadcrumbs">
+				<a href="/admin/">Inicio</a> >
+				<a href="/admin/Aplicacion/">Aplicacion</a> >
+				<a href="/admin/Aplicacion/evento/">Eventos</a> >
+				<a href="/admin/Aplicacion/evento/{{ evento.id }}/change">{{ evento.nombre }}</a>
+			</div>
+
+			<div id="content" class="flex">
+				<center>
+				<div class="content-main">
+					{{ chart.as_html }}
+				</div>
+				<div>
+					<a href='/admin/Aplicacion/evento/' target='_self'>
+						<input type='button' value='Regresar' class='default resultados'>
+					</a>
+				</div>
+				</center>
+			</div>
+		</div>
+	</body>
+</html>

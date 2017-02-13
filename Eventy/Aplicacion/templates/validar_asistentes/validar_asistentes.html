@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+	<head>
+		<meta charset="utf-8">
+	    <!-- code to include the highcharts and jQuery libraries goes here -->
+	    {% load static %}
+	    <script src="{% static 'js/jquery/jquery-1.8.3.js' %}"></script>
+	   	<script src="{% static 'js/jquery/noty/js/noty/packaged/jquery.noty.packaged.min.js' %}"></script>
+	    <script src="{% static 'js/jquery/noty/js/noty/layouts/topCenter.js' %}"></script>
+	    <script src="{% static 'js/jquery/noty/js/noty/themes/default.js' %}"></script>
+	    <script src="{% static 'js/jquery/jquery.cookie.js' %}"></script>
+	    <script src="{% static 'js/owner/validarAsistentes.js' %}"></script>
+
+
+	    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"></link>
+	    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css' %}"></link>
+		<title>Validar Asistente</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<div id="header">
+				<div id="branding">
+			    	<h1 id="site-name"><a href="/admin/">Eventy</a></h1>
+				</div>
+				<div class="custom-container" >	</div>
+			
+				<div id="user-tools">
+					Bienvenido/a,
+				    <strong>{{usuario.username}}</strong>.
+				    <a href="/">Ver el sitio</a> /
+				    <a href="/admin/password_change/">Cambiar contrasena</a> /
+				    <a href="/admin/logout/">Terminar sesion</a>
+				</div>
+			</div>
+
+			<div class="breadcrumbs">
+				<a href="/admin/">Inicio</a> >
+				<a href="/admin/Aplicacion/">Aplicacion</a> >
+				<a href="/admin/Aplicacion/pregunta/">Validar Asistentes</a> >
+			</div>
+
+			<div id="content" class="flex">
+				<div class="module" id="changelist">
+      
+      				
+         				<input type="hidden" name="csrfmiddlewaretoken" value={{ csrf_token }}>
+						<div class="actions">
+						    <label>Actividad:  
+						    	<select name="actividad" id="actividad" required="">
+						    		<option value='0' > --------------- </option>
+						    		{% for actividad in actividades %}
+										<option value={{actividad.id}} > {{actividad.nombre}} </option>
+									{% endfor %}
+								</select>
+							</label>  
+							<label>
+								Celular:  
+								<input name="celular" class="vTextField" maxlength="12" type="text" id="celular">
+							</label> 
+							<button type="submit" class="button" title="Buscar Asistente" name="buscar" id="buscar">Buscar</button>
+						</div>
+
+						<div class="results">
+							<table id="result_list">
+								<thead>
+									<tr>
+										<th scope="col" class="sortable column-id sorted ascending">
+										   <div class="text"><a href="?o=-1">ID</a></div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-nombre">
+										   <div class="text">
+										   		<a href="?o=2.1">Nombre</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-apellido"> 
+										   <div class="text">
+										   		<a href="?o=3.1">Apellido</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-celular"> 
+										   <div class="text">
+										   		<a href="?o=4.1">Celular</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-email">
+										   <div class="text">
+										   		<a href="?o=5.1">Email</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-empresa">
+										   <div class="text">
+										   		<a href="?o=6.1">Empresa</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-cargo">
+										   <div class="text">
+										   		<a href="?o=7.1">Cargo</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+										<th scope="col" class="sortable column-activo">
+										   <div class="text">
+										   		<a href="?o=8.1">Activo</a>
+										   </div>
+										   <div class="clear"></div>
+										</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+    			</div>
+			</div>
+		</div>
+	</body>
+</html>
+
